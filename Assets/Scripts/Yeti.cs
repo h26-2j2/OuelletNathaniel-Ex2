@@ -16,8 +16,7 @@ public class Yeti : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.GetComponent<Skieur>().DeconnecterCamera();
-            GetComponentInChildren<SpriteRenderer>().enabled = false;
+            skieur = collision.gameObject;
         }
     }
 
