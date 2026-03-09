@@ -5,7 +5,7 @@ public class ZoneFin : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.gameObject.GetComponent<Skieur>().DeconnecterCamera();
-        collision.gameObject.GetComponent<Skieur>().enabled = false;
+        collision.gameObject.GetComponent<Skieur>().enabled = false; // Désactive les contrôles
         GameManager.instance.Victoire();
     }
 }

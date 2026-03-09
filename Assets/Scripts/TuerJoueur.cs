@@ -7,9 +7,11 @@ public class TuerJoueur : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Skieur>().DeconnecterCamera();
-            collision.gameObject.GetComponent<Skieur>().enabled = false;
+            collision.gameObject.GetComponent<Skieur>().enabled = false; // Désactive les contrôles
             collision.rigidbody.bodyType = RigidbodyType2D.Static;
+            GetComponent<AudioSource>().Play();
             GameManager.instance.Defaite();
+            enabled = false;
         }
     }    
 }

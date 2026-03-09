@@ -9,12 +9,15 @@ public class Skieur : MonoBehaviour
     public InputAction actionMovementHorizontal;
     public InputAction actionMovementVertical;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
+    // Un peu de magie noire avec l'inertie du joueur.
     void Update()
     {
         float vitesseHorizontale = actionMovementHorizontal.ReadValue<float>();
@@ -35,6 +38,10 @@ public class Skieur : MonoBehaviour
         actionMovementVertical.Disable();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        audioSource.PlayOneShot(audioSource.clip);
+    }
 
     // Il faut appeller cette fonction dans la collision avec le yéti.
     public void DeconnecterCamera()
