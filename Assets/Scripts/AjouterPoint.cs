@@ -7,7 +7,6 @@ public class AjouterPoint : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameManager.instance.points++;
-            Debug.Log(GameManager.instance.points);
         }
     }
 }
