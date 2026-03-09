@@ -7,6 +7,7 @@ public class TuerJoueur : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Skieur>().DeconnecterCamera();
+            GameManager.instance.jeuActif = false;
             // GameManager.instance.Redemarrer();
         }
     }    

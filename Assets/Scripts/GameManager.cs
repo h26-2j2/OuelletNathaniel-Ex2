@@ -1,12 +1,17 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public float temps = 0f;
+    public bool jeuActif = true;
+    public float timer = 0f;
     public float points = 0f;
+    public float endDelay = 0f;
 
     public GameObject jeuOriginal;
+    public GameObject uiVictoire;
+    public GameObject uiDefaite;
     GameObject jeuCopie;
 
     private void Start()
@@ -16,13 +21,40 @@ public class GameManager : MonoBehaviour
         jeuOriginal.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (jeuActif)
+        {
+            timer += Time.deltaTime;
+        }
+        else
+        {
+            endDelay += Time.deltaTime;
+        }
+    }
+
+    public void Victoire()
+    {
+        jeuActif = false;
+        uiVictoire.SetActive(true);
+    }
+    public void Defaite()
+    {
+        jeuActif = false;
+        uiDefaite.SetActive(true);
+    }
+
     public void Redemarrer()
     {
         Destroy(jeuCopie);
         jeuCopie = Instantiate(jeuOriginal);
         jeuCopie.SetActive(true);
+        uiDefaite.SetActive(false);
+        uiVictoire.SetActive(false);
+        jeuActif = true;
 
-        temps = 0f;
+        timer = 0f;
         points = 0f;
+        endDelay = 0f;
     }
 }
