@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
     public float timer = 0f;
     public float points = 0f;
     public float endDelay = 0f;
+
+    public InputAction recommencerAction;
 
     public GameObject jeuOriginal;
     public GameObject uiVictoire;
@@ -19,6 +22,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         jeuCopie = Instantiate(jeuOriginal);
         jeuOriginal.SetActive(false);
+        recommencerAction.Enable();
     }
 
     private void Update()
@@ -30,6 +34,11 @@ public class GameManager : MonoBehaviour
         else
         {
             endDelay += Time.deltaTime;
+        }
+
+        if (recommencerAction.IsPressed() && endDelay >= 3f)
+        {
+            Redemarrer();
         }
     }
 
